@@ -235,7 +235,7 @@ $$ g_i=i \oplus \lfloor \frac{i}{2} \rfloor \oplus start$$
 
 例如对于二进制表示 `11110100`，减去 `1` 得到 `11110011`，这两个数按位与得到 `11110000` 。
 
-此外，$n \ \& \ (-n)$ 可以得到 $n$ 的位级表示中最低的那一位，例如对于二进制表示 `11110100`，取负得到 `00001100`，这两个数按位与得到 `00000100` 。
+此外，$n$ & $(-n)$ 可以得到 $n$ 的位级表示中最低的那一位，例如对于二进制表示 `11110100`，取负得到 `00001100`，这两个数按位与得到 `00000100` 。
 
 ## 2023.2.24
 
@@ -331,7 +331,7 @@ void sort()
 
 > 给定一个 $n$ 个点 $m$ 条边的图，要求从指定的顶点出发，经过所有的边恰好一次。
 
-这种 $\lceil ss \rfloor$ 问题与欧拉图或者半欧拉图有着紧密的联系，其定义如下：
+这种 $\lceil$ 一笔画 $\rfloor$ 问题与欧拉图或者半欧拉图有着紧密的联系，其定义如下：
 
 - 通过图中所有边恰好一次且行遍所有顶点的通路称为欧拉通路；
 - 通过图中所有边恰好一次且行遍所有顶点的回路称为欧拉回路；
@@ -448,9 +448,249 @@ void sort()
 
 1) LeetCode 刷题：
 `#1590`
+2) 报名《华为软件精英挑战赛》并阅读相关文档
+3) 给最近的工作建立了Github repository
 
 ### [`#1590` 同余](https://leetcode.cn/problems/make-sum-divisible-by-p/)
 
 > 两个数 $x$ 和 $y$，如果 $(x - y) \mod{p} = 0$，则称 $x$ 与 $y$ 对模 $p$ 同余，记作
-> $$x\equiv y (\mod p)$$
->例如 $42 \equiv 12 (\mod 10)$，$-17 \equiv 3(\mod 10)$。
+> $$x \equiv y ( \mod{p})$$
+>例如 $42 \equiv 12 ( \mod 10)$，$-17 \equiv 3( \mod 10)$。
+
+## 2023.3.11
+
+1) LeetCode 刷题：
+`#面试题 17.05 字母与数字`
+
+## 2023.3.12
+
+1) LeetCode 刷题：
+`#1617, #295`
+
+## 2023.3.13
+
+1) LeetCode 刷题：
+`#2383`
+
+## 2023.3.27
+
+1) 华为软挑初赛结束，两个礼拜练习赛，三天正式赛
+2) 休息一天。
+
+## 2023.3.28
+
+1) LeetCode 刷题：
+`#1092`
+
+2) GAMES401  Lecture 1;
+
+    配置好了基本环境
+
+## 2023.3.29
+
+1) LeetCode 刷题：
+`#1641`
+
+## 2023.3.30
+
+1) LeetCode 刷题：
+`#1637`
+
+## 2023.3.31
+
+1) LeetCode 刷题：
+`#2367, #99, #669`
+
+### [`#99` 二叉查找树](https://leetcode.cn/problems/recover-binary-search-tree/)
+
+> **二叉查找树**（Binary Search Tree, BST）是一种特殊的二叉树：对于每个父节点，其左子树中所有节点的值小于等于父节点的值，其右子树中所有节点的值大于等于父节点的值。因此对于一个二叉查找树，我们可以在 $O(\log{n})$ 的时间内查找一个值是否存在。
+
+一个二叉查找树的实现如下：
+
+```cpp
+template <class T>
+class BST {
+    struct Node {
+        T data;
+        Node* left;
+        Node* right;
+    };
+
+    Node* root;
+
+    Node* makeEmpty(Node* t) 
+    {
+        if (t == nullptr) return nullptr;
+        makeEmpty(t->left);
+        makeEmpty(t->right);
+        delete t;
+        return nullptr;
+    }
+
+    Node* insert(Node* t, T x)
+    {
+        if (t == nullptr)
+        {
+            t = new Node;
+            t->data = x;
+            t->left = t->right = nullptr;
+        }
+        else if (x < t->data)
+        {
+            t->left = insert(t->left, x);
+        }
+        else if (x > t->data)
+        {
+            t->right = insert(t->right, x);
+        }
+        return t;
+    }
+
+    Node* find(Node* t, T x)
+    {
+        if (t == nullptr)
+            return nullptr;
+        if (x < t->data)
+            return find(t->left, x);
+        if (x > t->data)
+            return find(t->right, x);
+        return t;
+    }
+
+    Node* findMin(Node* t)
+    {
+        if (t == nullptr || t->left == nullptr)
+            return t;
+        return findMin(t->left);
+    }
+
+    Node* findMax(Node* t)
+    {
+        if (t == nullptr || t->right == nullptr)
+            return t;
+        return findMax(t->right);
+    }
+
+    Node* remove(Node* t, T x)
+    {
+        Node* temp;
+        if (t == nullptr)
+            return nullptr;
+        else if (x < t->data)
+            t->left = remove(t->left, x);
+        else if (x > t->data)
+            t->right = remove(t->right, x);
+        else if (t->left && t->right)
+        {
+            temp = findMin(t->right);
+            t->data = temp->data;
+            t->right = remove(t->right, t->data);
+        }
+        else
+        {
+            temp = t;
+            if (t->left == nullptr)
+                t = t->right;
+            else if (t->riht == nullptr)
+                t = t->left;
+            delete temp;
+        }
+        return t;
+    }
+public:
+    BST(): root(nullptr) {}
+    
+    ~BST() 
+    {
+        root = makeEmpty(root);
+    }
+
+    void insert(T x)
+    {
+        root = insert(root, x);
+    }
+
+    void remove(T x)
+    {
+        root = remove(root, x);
+    }
+};
+```
+
+## 2023.4.1
+
+1) LeetCode 刷题：
+`#831`
+
+### [`#831` 正则表达式](https://leetcode.cn/problems/masking-personal-information/)
+
+> TODO:
+>
+> 需要康一康C++怎么运用`正则表达式`。
+
+## 2023.4.2
+
+1) LeetCode 刷题：
+`#1039`
+
+## 2023.4.3
+
+1) LeetCode 刷题：
+`#208, #1053, #1032, #226, #617, #572, #404, #513, #538, #235, #530, #236`
+
+### [`#208` 前缀树](https://leetcode.cn/problems/implement-trie-prefix-tree/)
+
+> **字典树**（Trie）用于判断字符串是否存在或者是否具有某种字符串前缀。
+
+### [`#572` 另一棵树的子树](https://leetcode.cn/problems/subtree-of-another-tree/)
+
+> TODO:
+>
+> 需要再回顾一下`kmp`解法和`树哈希`解法。
+
+## 2023.4.4
+
+1) LeetCode 刷题：
+`#94, #1000, #889, #106, #145, #109, #897, #653`
+
+### [`#94` Morris 中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
+
+> **Morris 遍历算法**是一种遍历二叉树的方法，它能将非递归的中序遍历空间复杂度降为 $O(1)$。
+
+**Morris 遍历算法**整体步骤如下（假设当前遍历到的节点为 $x$）：
+
+1. 如果 $x$ 无左孩子，先将 $x$ 的值加入答案数组，再访问 $x$ 的右孩子，即 $x=x.right$ 。
+2. 如果 $x$ 有左孩子，则找到 $x$ 左子树上最右的节点（即左子树中序遍历的最后一个节点， $x$ 在中序遍历中的前驱结点），我们记为 $predecessor$ 。根据 $predecessor$ 的右孩子是否为空，进行如下操作。
+
+   - 如果 $predecessor$ 的右孩子为空，则将其右孩子指向 $x$ ，然后访问 $x$ 的左孩子，即 $x=x.left$ 。
+   - 如果 $predecessor$ 的右孩子不为空，则此时其右孩子指向 $x$，说明我们已经遍历完 $x$ 的左子树，我们将 $predecessor$ 的右孩子置空，将 $x$ 的值加入答案数组，然后访问 $x$ 的右孩子，即 $x=x.right$ 。
+3. 重复上述操作，直至访问完整棵树。
+
+## 2023.4.5
+
+1) LeetCode 刷题：
+`#450, #2427, #337`
+
+## 2023.4.6
+
+1) LeetCode 刷题：
+`#1017`
+
+2) 复习动态规划 - 背包 DP
+   - [0-1 背包](https://www.luogu.com.cn/problem/P2871)
+   - [完全背包](https://www.luogu.com.cn/problem/P1616)
+   - [多重背包](https://leetcode.cn/problems/number-of-ways-to-earn-points/)
+
+## 2023.4.7
+
+1) LeetCode 刷题：
+`#1040`
+
+## 2023.4.8
+
+1) LeetCode 刷题：
+`#1125`
+
+> TODO:
+>
+> 在学习状压 DP 时可以再回头看看 [#1125](https://leetcode.cn/problems/smallest-sufficient-team/)。
