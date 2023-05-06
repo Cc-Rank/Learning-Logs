@@ -694,3 +694,34 @@ public:
 > TODO:
 >
 > 在学习状压 DP 时可以再回头看看 [#1125](https://leetcode.cn/problems/smallest-sufficient-team/)。
+
+## 2023.4.9
+
+1) 去华为软挑复赛现场
+
+## 2023.4.10-2023.4.21
+
+1) 写审稿意见
+
+2) LeetCode 刷题：
+`#2404, 1019`
+
+3) 阅读Unity Tutorial, 实现简单的Ruby's Adventure
+
+## 2023.4.22
+
+1) LeetCode 刷题：
+`#1027`
+
+## 2023.4.23
+
+1) LeetCode 刷题：
+`#1105`
+
+2) LeetCode 周赛：
+完成 `#2404, 1019`， 未完成：`#`
+
+## 2023.4.24
+
+1) LeetCode 刷题：
+`#1163`
