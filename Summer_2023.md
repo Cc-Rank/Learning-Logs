@@ -232,3 +232,48 @@ $A^*$ 搜索算法（[OI-wiki](https://oi-wiki.org/search/astar/)）,简称 $A^*
     中等题：`#1015`
 
     动态规划专项：`#1671.得到山形数组的最少删除次数`，`#354.俄罗斯套娃信封问题`，`#1626.无矛盾的最佳球队`
+
+2) 啃 Vulkan Tutorial
+
+## 2023.5.11
+
+1) LeetCode 刷题：
+
+    每日进度（6 / 5）
+
+    简单题：`#374.猜数字大小（二分）`
+
+    中等题：`#1016.子串能表示从1到N数字的二进制串（滑动窗口）`
+
+    动态规划专项：
+
+    - 股票DP：`#1911.最大子序列交替和`，
+
+    - 区间DP：`#516.最长回文子序列`，`#.375.猜数字大小II`，`#1312.让字符串成为回文串的最少插入次数`
+
+    - 复习：买卖股票的最佳时机（`#121`，`#122`，`#123`，`#188`，`#309`，`#714`， `#1039`）
+
+2) 啃 Vulkan Examples
+
+### [`#1016` `st::bitset`](https://leetcode.cn/problems/binary-string-with-substrings-representing-1-to-n/solution/san-chong-suan-fa-cong-bao-li-dao-you-hu-nmtq/)
+
+Defined in header `<bitset>`
+
+```cpp
+template<std::size_t N>
+class bitset;
+```
+
+The class template [bitset](https://en.cppreference.com/w/cpp/utility/bitset) represents a fixed-size sequence of N bits. Bitsets can be manipulated by standard logic operators and converted to and from strings and integers. For the purpose of the string representation and of naming directions for shift operations, the sequence is thought of as having its lowest indexed elements at the right, as in the binary representation of integers.
+
+### [`#10147` 区间DP](https://loj.ac/p/10147)
+
+区间类动态规划是线性动态规划的扩展，它在分阶段地划分问题时，与阶段中元素出现的顺序和由前一阶段的哪些元素合并而来有很大的关系。
+
+令状态 $f(i, j)$ 表示将下标位置 $i$ 到 $j$ 的所有元素合并能获得的价值的最大值，那么 $f(i, j) = max{f(i, k) + f(k + 1, j) + cost}$，$cost$ 为将这两组元素合并起来的代价。
+
+区间 DP 有以下特点：
+
+- 合并：即将两个或多个部分进行整合，当然也可以反过来；
+- 特征：能将问题分解为能两两合并的形式；
+- 求解：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
