@@ -246,18 +246,15 @@ $A^*$ 搜索算法（[OI-wiki](https://oi-wiki.org/search/astar/)）,简称 $A^*
     中等题：`#1016.子串能表示从1到N数字的二进制串（滑动窗口）`
 
     动态规划专项：
-
-    - 股票DP：`#1911.最大子序列交替和`，
-
+    - 状态机DP：`#1911.最大子序列交替和`，
     - 区间DP：`#516.最长回文子序列`，`#.375.猜数字大小II`，`#1312.让字符串成为回文串的最少插入次数`
-
-    - 复习：买卖股票的最佳时机（`#121`，`#122`，`#123`，`#188`，`#309`，`#714`， `#1039`）
+    - 复习：状态机DP（`#121`，`#122`，`#123`，`#188`，`#309`，`#714`， `#1039`）
 
 2) 啃 Vulkan Examples
 
 ### [`#1016` `st::bitset`](https://leetcode.cn/problems/binary-string-with-substrings-representing-1-to-n/solution/san-chong-suan-fa-cong-bao-li-dao-you-hu-nmtq/)
 
-Defined in header `<bitset>`
+which defined in header `<bitset>`
 
 ```cpp
 template<std::size_t N>
@@ -277,3 +274,22 @@ The class template [bitset](https://en.cppreference.com/w/cpp/utility/bitset) re
 - 合并：即将两个或多个部分进行整合，当然也可以反过来；
 - 特征：能将问题分解为能两两合并的形式；
 - 求解：对整个问题设最优值，枚举合并点，将问题分解为左右两个部分，最后合并两个部分的最优值得到原问题的最优值。
+
+## 2023.5.12
+
+1) LeetCode 刷题：
+
+    每日进度（5 / 5）
+
+    困难题：`#1330.翻转子数组得到最大的数组值（数学）`
+
+    动态规划专项：
+    - 区间DP：`#1547.切棍子的最小成本`
+    - 复习：区间DP（`#1000`，`#312`）
+    - 复习：多重背包（`#2585`）
+
+    二叉树专项：
+    - new：`#111.二叉树的最小深度`，`#129.求根节点到叶节点数字之和`，`#1026.节点与其祖先之间的最大差值`
+    - 复习：`#104`，`#112`，`#113`，`#257`
+
+2) 啃 Vulkan Examples
