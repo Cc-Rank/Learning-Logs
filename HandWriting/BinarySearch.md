@@ -4,9 +4,14 @@
 
 二分查找也常被成为二分法或者折半查找，每次查找时通过将待查找区间分成两部分并只取一部分继续查找，将查找的复杂度大大减少。对于一个长度为 $O(n)$ 的数组，二分查找的时间复杂度为 $O(\log{n})$。
 
+二分查找通常分为 **左闭右开** 和 **左闭右闭** 两种写法.
+
+- 左闭右开中，循环的区间为 $[left, right)$，所以有 `left = mid + 1` 和 `right = mid`。主循环判断条件为 `left < right`。
+- 左闭右闭时，循环的区间为 $[left, right]$，所以有 `left = mid + 1` 和 `right = mid - 1`。主循环判断条件为 `left <= right`。
+
 ## 实现
 
-这里的实现以左闭右开为例。其中，循环的区间为 $[left, right)$，所以有 `left = mid + 1` 和 `right = mid`。主循环判断条件为 $left < right$。
+这里的实现以左闭右开为例。其中，循环的区间为 $[left, right)$，所以有 `left = mid + 1` 和 `right = mid`。主循环判断条件为 `left < right`。
 
 ### std::lower_bound
 
@@ -29,7 +34,7 @@ int lower_bound(vector<int>& nums, int target) {
         else
             l = mid + 1;
     }
-    return l;;
+    return l;
 }
 ```
 
@@ -54,6 +59,6 @@ int upper_bound(vector<int>& nums, int target) {
         else
             l = mid + 1;
     }
-    return l;;
+    return l;
 }
 ```
