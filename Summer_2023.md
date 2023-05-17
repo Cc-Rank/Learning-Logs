@@ -156,6 +156,8 @@ public:
 };
 ```
 
+若需要自己实现双向队列，参见也可以[自己实现](https://github.com/Cc-Rank/Learning-Logs/blob/main/HandWriting/LRUCache.md/#双向队列实现)来替换掉`std::list`。
+
 ## 2023.5.7
 
 1) LeetCode 刷题：
@@ -347,6 +349,7 @@ Morris 遍历的核心思想是利用树的大量空闲指针，实现空间开�
    - 如果前驱节点的右子节点为空，将前驱节点的右子节点设置为当前节点。然后将当前节点加入答案，并将前驱节点的右子节点更新为当前节点。当前节点更新为当前节点的左子节点。
    - 如果前驱节点的右子节点为当前节点，将它的右子节点重新设为空。当前节点更新为当前节点的右子节点。
 3. 重复步骤 2 和步骤 3，直到遍历结束。
+[具体实现](https://github.com/Cc-Rank/Learning-Logs/blob/main/HandWriting/BinaryTreeTraversal.md/#前序morris遍历)
 
 ### [`#94` Morris 中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 
@@ -359,6 +362,7 @@ Morris 遍历的核心思想是利用树的大量空闲指针，实现空间开�
    - 如果 `predecessor` 的右孩子为空，则将其右孩子指向 `node` ，然后访问 `node` 的左孩子，即 `node = node->left` 。
    - 如果 `predecessor` 的右孩子不为空，则此时其右孩子指向 `node`，说明我们已经遍历完 `node` 的左子树，我们将 `predecessor` 的右孩子置空，将 `node` 的值加入答案数组，然后访问 `node` 的右孩子，即 `node = node->right`。
 3. 重复上述操作，直至访问完整棵树。
+[具体实现](https://github.com/Cc-Rank/Learning-Logs/blob/main/HandWriting/BinaryTreeTraversal.md/#中序-morris-遍历)
 
 ### [`#145` Morris 后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/solution/er-cha-shu-de-hou-xu-bian-li-by-leetcode-solution/)
 
@@ -374,3 +378,27 @@ Morris 遍历的核心思想是利用树的大量空闲指针，实现空间开�
 
 - 时间复杂度：$O(n)$，其中 $n$ 是二叉树的节点数。没有左子树的节点只被访问一次，有左子树的节点被访问两次。
 - 空间复杂度：$O(1)$。只操作已经存在的指针（树的空闲指针），因此只需要常数的额外空间。
+
+## 2023.5.16
+
+1) LeetCode 刷题：
+
+    每日进度（5 / 5）
+
+    中等题：`#1335.工作计划的最低难度（DP）`
+
+    树形DP专项：
+    - new：`#124.二叉树中的最大路径和`, `#2246.相邻字符不同的最长路径`, `#687.最长同值路径`, `#2538.最大价值和与最小价值和的差值`
+    - 复习：`#543`
+
+2) 复习 GAMES101 作业1
+
+## 2023.5.17
+
+1) LeetCode 刷题：
+
+    每日进度（5 / 5）
+
+    简单题：`#2446`, `#283`
+
+    中等题：`#1003.检查替换后的词是否有效（栈）`, `#970.强整数（枚举）`, `#1376.通知所有员工所需的时间（递归）`
