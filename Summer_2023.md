@@ -567,3 +567,91 @@ vector<int> dijkstra(vector<vector<pair<int, int>>>& g, int start) {
     链表专项：
     - new：`#237.删除链表中的节点`, `#203.移除链表元素`, `#82.删除排序链表中的重复元素II`
     - 复习：`#19`, `#83`
+
+## 2023.5.26
+
+1) LeetCode 刷题：
+
+    每日进度（5 / 5）
+
+    简单题：`#409`, `#696`
+
+    中等题：`#1091.二进制矩阵中的最短路径（BFS / A* / Dijkstra）`, `#227.基本计算器II（栈）`, `#28.找出字符串中第一个匹配项的下标（KMP）`
+
+    复习：`#3`, `#5`
+
+### [`#28` KMP 算法](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+Knuth-Morris-Pratt 算法，简称 KMP 算法，由 Donald Knuth、James H. Morris 和 Vaughan Pratt 三人于 1977 年联合发表。
+
+#### 前缀函数
+
+Knuth-Morris-Pratt 算法的核心为前缀函数，记作 $\pi(i)$，其定义如下：
+
+对于长度为 $m$ 的字符串 $s$，其前缀函数 $\pi(i)(0≤i<m)$ 表示 s 的子串 $s[0:i]$ 的最长的相等的真前缀与真后缀的长度。特别地，如果不存在符合条件的前后缀，那么 $\pi(i) = 0$。简单来说 $\pi[i]$ 就是，子串 $s[0 \dots i]$ 最长的相等的真前缀与真后缀的长度。特别地，规定 $\pi[0] = 0$。
+
+用数学语言描述如下：
+$$
+\pi[i] = \max_{k = 0 \dots i}\{k: s[0 \dots k - 1] = s[i - (k - 1) \dots i]\}
+$$
+
+举例来说，对于字符串 `abcabcd`，
+
+- $\pi[0]=0$，因为 `a` 没有真前缀和真后缀，根据规定为 0
+- $\pi[1]=0$，因为 `ab` 无相等的真前缀和真后缀
+- $\pi[2]=0$，因为 `abc` 无相等的真前缀和真后缀
+- $\pi[3]=1$，因为 `abca` 只有一对相等的真前缀和真后缀：`a`，长度为 1
+- $\pi[4]=2$，因为 `abcab` 相等的真前缀和真后缀只有 `ab`，长度为 2
+- $\pi[5]=3$，因为 `abcabc` 相等的真前缀和真后缀只有 `abc`，长度为 3
+- $\pi[6]=0$，因为 `abcabcd` 无相等的真前缀和真后缀
+
+同理可以计算字符串 `aabaaab` 的前缀函数为 $[0, 1, 0, 1, 2, 2, 3]$。
+
+我们可以构建一个不需要进行任何字符串比较，并且只进行 $O(n)$ 次操作的算法。
+
+```cpp
+vector<int> prefix_function(string s) {
+    int n = (int)s.length();
+    vector<int> pi(n);
+    for (int i = 1; i < n; i++) {
+        int j = pi[i - 1];
+        while (j > 0 && s[i] != s[j]) 
+            j = pi[j - 1];
+        if (s[i] == s[j]) 
+            j++;
+        pi[i] = j;
+    }
+    return pi;
+}
+```
+
+这是一个 **在线** 算法，即其当数据到达时处理它——举例来说，你可以一个字符一个字符的读取字符串，立即处理它们以计算出每个字符的前缀函数值。该算法仍然需要存储字符串本身以及先前计算过的前缀函数值，但如果我们已经预先知道该字符串前缀函数的最大可能取值 $M$，那么我们仅需要存储该字符串的前 $M + 1$ 个字符以及对应的前缀函数值。
+
+#### 在字符串中查找子串
+
+给定一个文本 $t$ 和一个字符串 $s$，我们尝试找到并展示 $s$ 在 $t$ 中的所有出现。该任务是前缀函数的一个典型应用。
+
+这样我们可以将代码实现分为两部分：
+
+1. 第一部分是求 $needle$ 部分的前缀函数，需要保留这部分的前缀函数值。
+2. 第二部分是求 $haystack$ 部分的前缀函数，无需保留这部分的前缀函数值，只需要用一个变量记录上一个位置的前缀函数值即可。当某个位置的前缀函数值等于 $m$ 时，说明找到了一次字符串 $needle$ 在字符串 $haystack$ 中的出现，计算出起始位置，将其返回即可。
+
+```cpp
+int strStr(string haystack, string needle) {
+    int n = haystack.size(), m = needle.size();
+    if (m == 0) return 0;
+    vector<int> next = prefix_function(needle);
+    for (int i = 0, j = 0; i < n; i++) {
+        while (j > 0 && haystack[i] != needle[j])
+            j = next[j - 1];
+        if (haystack[i] == needle[j])
+            j++;
+        if (j == m)
+            return i - m + 1;
+    }
+    return -1;
+}
+```
+
+- 时间复杂度：$O(n + m)$，其中 $n$ 是字符串 $haystack$ 的长度，$m$ 是字符串 $needle$ 的长度。这里至多需要遍历两字符串一次。
+- 空间复杂度：$O(m)$，其中 $m$ 是字符串 $needle$ 的长度。这里只需要保存字符串 $needle$ 的前缀函数。
