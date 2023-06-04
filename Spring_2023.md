@@ -1,12 +1,10 @@
 # 2023年春 学习logs
 
-1）看完 [`LeetCode101`](https://github.com/changgyhub/leetcode_101)；
+1）~~看完 [`LeetCode101`](https://github.com/changgyhub/leetcode_101)；~~
 
-2）看完 `Algorithm`；
+2）~~看完 `Algorithm`；~~
 
 3）完成 `GAMES101` 的复习笔记；
-
-4）初步展开实验；
 
 ## 2023.2.9
 
