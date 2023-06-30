@@ -712,7 +712,7 @@ int strStr(string haystack, string needle) {
 1) 每日刷题；
 2) ~~学习WebServer，实现简单的项目；~~
 3) 完成 `GAMES101` 的复习笔记；
-4) 开始学习 `GAMES202`，完成作业 1；
+4) ~~开始学习 `GAMES202`，完成作业 1；~~
 5) 开始学习 OpenGL，看LearnOpenGL；
 
 ## 2023.5.31 - 2023.6.4
@@ -856,3 +856,24 @@ $$
 4. 复习 Linux网络编程相关知识
    - Notes:[网络编程](./Notes_Nowcoder/Notes_Network.md)
    - HTTP server 初步[实现](./Notes_Nowcoder/HTTPServer/)
+
+## 2023.6.26 - 2023.6.30
+
+1. LeetCode 刷题：
+   - 每日进度（27 / 5）
+     - 简单题：`#2485`, `#2490`
+     - 中等题：`#1314.矩阵区域和（二维前缀和）`, `#1186.删除一次得到子数组最大和（DP）`, `#1253.重构2行二进制矩阵（贪心TODO）`
+     - 困难题：`#1681.最小不兼容性（状压DPTODO）`
+   - LeetCode 75:
+     - 数组/字符串:`#1768`, `#1071`, `#1431`, `#345`, `#151`, `#334`, `#443`
+     - 双指针：`#392`, `#1679`
+     - 滑动窗口：`#643`, `#1456`, `#1493`
+     - 前缀和：`#724`, `#1732`
+     - 哈希表：`#1207`, `#2215`, `#1657`
+     - 栈：`#2390`, `#2390`
+     - 队列：`#933`
+     - 链表：`#2095`
+
+2. NOTES:
+   - 完成了 GAMES 202 作业一 [实时阴影](https://github.com/Cc-Rank/GAMSE202/tree/main/homework1) 相关笔记。
+   - 完成了 GAMES 101 作业三 [Blinn-Phong 模型](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#blinn-phong-%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B)、[实时渲染管线](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF-real-time-rendering-pipeline)、[纹理映射](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84-texture-mapping) 相关笔记
