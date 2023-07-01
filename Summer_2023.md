@@ -877,3 +877,26 @@ $$
 2. NOTES:
    - 完成了 GAMES 202 作业一 [实时阴影](https://github.com/Cc-Rank/GAMSE202/tree/main/homework1) 相关笔记。
    - 完成了 GAMES 101 作业三 [Blinn-Phong 模型](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#blinn-phong-%E5%8F%8D%E5%B0%84%E6%A8%A1%E5%9E%8B)、[实时渲染管线](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E7%AE%A1%E7%BA%BF-real-time-rendering-pipeline)、[纹理映射](https://github.com/Cc-Rank/GAMES101/blob/main/Assignment/Assignment3/README.md#%E7%BA%B9%E7%90%86%E6%98%A0%E5%B0%84-texture-mapping) 相关笔记
+
+## 7 月阶段目标
+
+1) 每日刷题；
+2) 刷完 LeetCode75、LeetCode100
+3) 每日 C++ 八股；
+4) 完成 `GAMES101` 光锥部分复习笔记；
+5) 完成 `GAMES202` 所有作业并整理笔记；
+
+## 2023.7.1 - 2023.7.9
+
+周打卡目标：
+
+1. 每日刷题，周赛；
+2. 刷完 LeetCode 75；
+3. 整理光线追踪、路径追踪部分笔记；
+4. 阿秀八股 80条；
+
+完成项：
+
+1. LeetCode 刷题：
+   - 每日进度（0 / 9）
+2. NOTES：
