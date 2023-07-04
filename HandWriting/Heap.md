@@ -22,7 +22,7 @@ void pop()
 {
     heap[1] = heap.back();
     heap.pop_back();
-    sink(1);
+    sink(1, heap.size() - 1);
 }
 
 // 上浮
@@ -67,6 +67,15 @@ void sort()
 当然，如果给定数组的下标是从 0 开始，也可以在原数组上完成堆的构建。
 
 ```cpp
+void swim(int pos)
+{
+    while (pos > 0 && heap[(pos - 1) / 2] < heap[pos])
+    {
+        swap(heap[(pos - 1) / 2], heap[pos]);
+        pos = (pos - 1) >> 1;
+    }
+}
+
 void sink(vector<int>& heap, int pos, int n)
 {
     while (pos * 2 < n)
