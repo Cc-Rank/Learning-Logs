@@ -34,8 +34,7 @@ private:
 ```cpp
     ~MyShared_Ptr()
     {
-        if (!m_ptr) return;
-        if (--*use == 0)
+        if (m_ptr && --*use == 0)
         {
             delete m_ptr;
             delete use;
@@ -64,7 +63,7 @@ private:
     MyShared_Ptr& operator=(const MyShared_Ptr& rhs)
     {
         ++* rhs.use;
-        if (-- * use == 0)
+        if (m_ptr && -- * use == 0)
         {
             delete m_ptr;
             delete use;
@@ -108,7 +107,7 @@ private:
 
 ## 移动语义
 
-接着我们写移动构造函数(move constructor)和移动赋值运算符(move assignment operator)。这两个成员类似对应的拷贝操作，但它们从给定对象“窃取”资源而不是拷贝资源。
+接着我们写移动构造函数（move constructor）和移动赋值运算符（move assignment operator）。这两个成员类似对应的拷贝操作，但它们从给定对象“窃取”资源而不是拷贝资源。
 
 ### 移动构造函数
 
@@ -157,6 +156,7 @@ private:
 
 ```cpp
     T* get() const { return m_ptr; }
+    bool unique() const { return *use == 1; }
     std::size_t use_count() const { return *use; }
 ```
 
@@ -170,6 +170,8 @@ using std::cout; using std::endl;
 template<typename T>
 class MyShared_Ptr {
 public:
+    MyShared_Ptr() : m_ptr(nullptr), use(nullptr) {}
+
     MyShared_Ptr(T* ptr)
         : m_ptr(ptr), use(new size_t(1))
     {
@@ -207,7 +209,7 @@ public:
     {
         cout << "Assignment Operator" << endl;
         ++* rhs.use;
-        if (-- * use == 0)
+        if (m_ptr && -- * use == 0)
         {
             cout << *m_ptr << " destructed" << endl;
             delete m_ptr;
@@ -243,6 +245,10 @@ public:
     T* operator->() const { return m_ptr; }
     explicit operator bool() const { return m_ptr; }
 
+    T* get() const { return m_ptr; }
+    bool unique() const { return *use == 1; }
+    std::size_t use_count() const { return *use; }
+
 private:
     T* m_ptr;
     std::size_t* use;
@@ -262,6 +268,7 @@ int main()
 
             cout << "---------- 移动赋值运算符 ----------\n";
             test3 = std::move(test3);
+            
             cout << "---------- 测试 ----------\n";
             if (test3)
                 cout << "true" << endl;
